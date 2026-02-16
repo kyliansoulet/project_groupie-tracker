@@ -14,12 +14,12 @@ func main() {
 
 	// Mes routes
 	http.HandleFunc("/", handlers.HomeHandler)
-	http.HandleFunc("/collection", handlers.CollectionHandler)     // Le gros morceau (FT1, FT2, FT3)
+	http.HandleFunc("/collection", handlers.CollectionHandler)     // le principal (FT1, FT2, FT3)
 	http.HandleFunc("/pokemon", handlers.DetailHandler)            // Page détail
 	http.HandleFunc("/favoris", handlers.FavoritesHandler)         // FT4
 	http.HandleFunc("/add-fav", handlers.AddFavoriteHandler)       // ajouter en fav
 	http.HandleFunc("/remove-fav", handlers.RemoveFavoriteHandler) // supprimer des fav
-	http.HandleFunc("/about", handlers.AboutHandler)               // La FAQ (quasi vide)
+	http.HandleFunc("/about", handlers.AboutHandler)               // La FAQ
 
 	fmt.Println("Serveur lancé sur http://localhost:8080 (Attends quelques secondes que l'API charge...)")
 
