@@ -1,0 +1,52 @@
+{{template "header"}}
+<div class="container">
+    <h1>Attrapez les tous !</h1>
+
+    <form action="/collection" method="GET" class="filters">
+        <input type="text" name="search" placeholder="Nom..." value="{{.Search}}">
+
+        <select name="type">
+            <option value="">Tous les types</option>
+            {{range .Types}}
+            <option value="{{.}}" {{if eq . $.TypeFilter}}selected{{end}}>{{.}}</option>
+            {{end}}
+        </select>
+
+        <button type="submit">Filtrer</button>
+        <a href="/collection" class="btn-reset">Reset</a>
+    </form>
+
+    <div class="grid">
+        {{range .Pokemons}}
+        <div class="card type-{{(index .Types 0).Type.Name}}">
+            <img src="{{.Sprites.Other.DreamWorld.FrontDefault}}" alt="{{.Name}}">
+            <h3>{{.Name}}</h3>
+            <div class="badges">
+                {{range .Types}}
+                <span class="badge">{{.Type.Name}}</span>
+                {{end}}
+            </div>
+            <br>
+            <a href="/pokemon?id={{.ID}}" class="btn">Détails</a>
+
+            <form action="/add-fav" method="POST" style="display:inline;">
+                <input type="hidden" name="id" value="{{.ID}}">
+                <input type="hidden" name="name" value="{{.Name}}">
+                <input type="hidden" name="image" value="{{.Sprites.Other.DreamWorld.FrontDefault}}">
+                <button type="submit" class="heart">♥</button>
+            </form>
+        </div>
+        {{end}}
+    </div>
+
+    <div class="pagination">
+        {{if gt .Page 1}}
+        <a href="/collection?page={{.PrevPage}}&search={{.Search}}&type={{.TypeFilter}}">Précédent</a>
+        {{end}}
+
+        <span>Page {{.Page}}</span>
+
+        <a href="/collection?page={{.NextPage}}&search={{.Search}}&type={{.TypeFilter}}">Suivant</a>
+    </div>
+</div>
+{{template "footer"}}

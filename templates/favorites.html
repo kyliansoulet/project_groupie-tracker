@@ -1,0 +1,22 @@
+{{template "header"}}
+<div class="container">
+    <h1>Mes Favoris</h1>
+
+    {{if .}}
+    <div class="grid">
+        {{range .}}
+        <div class="card">
+            <img src="{{.Image}}" alt="{{.Name}}">
+            <h3>{{.Name}}</h3>
+            <form action="/remove-fav" method="POST">
+                <input type="hidden" name="id" value="{{.ID}}">
+                <button type="submit" class="btn-danger">Supprimer</button>
+            </form>
+        </div>
+        {{end}}
+    </div>
+    {{else}}
+    <p>pas encore de favoris... Va en chasser !!!!</p>
+    {{end}}
+</div>
+{{template "footer"}}

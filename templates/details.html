@@ -1,0 +1,26 @@
+{{template "header"}}
+<div class="detail-container">
+    <a href="/collection">← Retour</a>
+    <h1>{{.Name}} #{{.ID}}</h1>
+
+    <div class="detail-content">
+        <img src="{{.Sprites.Other.DreamWorld.FrontDefault}}" class="big-img">
+
+        <div class="info">
+            <h2>Infos</h2>
+            <p><strong>Poids:</strong> {{.Weight}} hg</p>
+            <p><strong>Taille:</strong> {{.Height}} dm</p>
+
+            <h3>Types</h3>
+            <ul>
+                {{range .Types}}<li>{{.Type.Name}}</li>{{end}}
+            </ul>
+
+            <h3>Talents (Abilities)</h3>
+            <ul>
+                {{range .Abilities}}<li>{{.Ability.Name}}</li>{{end}}
+            </ul>
+        </div>
+    </div>
+</div>
+{{template "footer"}}
